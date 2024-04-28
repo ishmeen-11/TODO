@@ -1,33 +1,23 @@
 
-
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
+  
+   {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Signup</div>
-                <div class="card-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary">Signup</button>
-                        <span id="error-message" class="text-danger" style="display: none;">Check your credentials</span>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="containter pt-4">
+  <div class="col-lg-5 shadow  mx-auto p-0">
+    <div class="alert alert-success">
+      <h2>Create Account</h2>
     </div>
+    <div class="p-4">
+      <form method="post" action="/signup/" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <hr>
+        <input class="btn btn-success" type="submit" value="Create Account">
+      </form>
+    </div>
+  </div>
 </div>
+
 {% endblock %}
 
-{% block script %}
-<script>
-    // Function to display error message
-    function displayErrorMessage() {
-        document.getElementById('error-message').style.display = 'block';
-    }
-</script>
-{% endblock %}
+
