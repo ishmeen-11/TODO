@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -13,63 +13,39 @@
 </head>
 
 <body>
-    <!-- navbar start -->
+    <!-- navabar start -->
     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
         <a class="navbar-brand" href="/">TODO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
 
-
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a> <!-- Change href to /login -->
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/signup">Signup</a>
                 </li>
 
-
+                {% endif %}
 
 
             </ul>
         </div>
     </nav>
-    <!-- changing content -->
+    <!-- changing coontent -->
     <div>
+        {% block content %}
 
-        <div class="container pt-4">
-            <div class="col-lg-5 shadow mx-auto p-0">
-                <div class="alert alert-success">
-                    <h2>Login</h2> <!-- Change heading to Login -->
-                </div>
-                <div class="p-4">
-                    <form method="post" action="/login/"> <!-- Change action to /login/ -->
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                            value="zCBw4JXWtgRHNRrVFFDgDpkaHu1TXwyAtHzyhhmR1QguLPJq5qEpidHjPhHNL6FT">
-                        <p>
-                            <label for="id_username">Username:</label>
-                            <input type="text" name="username" maxlength="150" autocapitalize="none"
-                                autocomplete="username" autofocus="" required="" id="id_username">
-                        </p>
-
-
-                        <p>
-                            <label for="id_password">Password:</label>
-                            <input type="password" name="password" autocomplete="current-password" required=""
-                                id="id_password">
-                        </p>
-
-                        <hr>
-                        <input class="btn btn-success" type="submit" value="Login"> <!-- Change button text to Login -->
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
+        {% endblock %}
     </div>
     <!-- end -->
 
